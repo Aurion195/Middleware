@@ -1,19 +1,11 @@
 package tm ;
 
-import javax.persistence.*;
 import javax.ejb.*;
-import javax.annotation.*;
+import javax.jms.* ;
 
-@Stateful
-public class TraitementDemande implements ITraitementDemande {
-
-	@PersistenceContext(unitName = "bookstorePU")
-	private EntityManager managerGestionEmprunt ;
-
-	private EntityEmprunteur sessionEmprunteur ;
-
-	@Resource
-	SessionConext sc ;
-
-
+@Stateless
+public class TraitementDemande implements ITraitementDemande{
+	public void traiterMessage(String msg) {
+		System.out.println("Je suis le traiteur de message, voici le message \n" + msg) ;
+	}
 }

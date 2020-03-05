@@ -1,9 +1,9 @@
 package tm ;
 
-import javax.persistence.*;
-import javax.ejb.Remote;
+import javax.ejb.Local;
+import javax.jms.Message;
 
-@Remote
+@Local
 public interface ITraitementDemande { 
-	public void traitementMesage(Message message) ;
+	public void traiterMessage(String msg) ;
 }
