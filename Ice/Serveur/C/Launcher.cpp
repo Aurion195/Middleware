@@ -32,7 +32,8 @@ bool Launcher::ajoutAnnuaire(string nom, string numTel, const ::Ice::Current&) {
     Annuaire a ;
 
     if(!contactPresent(nom, numTel)) {
-        a.id = cpt++;
+        cpt++;
+        a.id = cpt;
         a.nom = nom ;
         a.numTel = numTel;
         liste_.push_back(a);
@@ -42,13 +43,13 @@ bool Launcher::ajoutAnnuaire(string nom, string numTel, const ::Ice::Current&) {
     return false ;
 }
 
-string Launcher::suppressionEnregistrement(string id, const ::Ice::Current&) {
+string Launcher::suppressionEnregistrement(int id, const ::Ice::Current&) {
     if(liste_.size() == 0) {
         return "La liste est vide" ;
     }
 
     for(int i = 0 ; i < liste_.size() ; i++) {
-        if(liste_[i].id.compare(id)) {
+        if(liste_[i].id == id) {
             liste_.erase(liste_.begin() + i) ;
             return "Le contact à été effacé";
         }

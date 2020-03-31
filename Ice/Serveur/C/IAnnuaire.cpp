@@ -121,10 +121,10 @@ server::IAnnuaire::_iceD_suppressionEnregistrement(::IceInternal::Incoming& inS,
 {
     _iceCheckMode(::Ice::OperationMode::Normal, current.mode);
     auto istr = inS.startReadParams();
-    ::std::string iceP_id;
+    int iceP_id;
     istr->readAll(iceP_id);
     inS.endReadParams();
-    ::std::string ret = this->suppressionEnregistrement(::std::move(iceP_id), current);
+    ::std::string ret = this->suppressionEnregistrement(iceP_id, current);
     auto ostr = inS.startWriteParams();
     ostr->writeAll(ret);
     inS.endWriteParams();
@@ -248,7 +248,7 @@ server::IAnnuairePrx::_iceI_ajoutAnnuaire(const ::std::shared_ptr<::IceInternal:
 
 /// \cond INTERNAL
 void
-server::IAnnuairePrx::_iceI_suppressionEnregistrement(const ::std::shared_ptr<::IceInternal::OutgoingAsyncT<::std::string>>& outAsync, const ::std::string& iceP_id, const ::Ice::Context& context)
+server::IAnnuairePrx::_iceI_suppressionEnregistrement(const ::std::shared_ptr<::IceInternal::OutgoingAsyncT<::std::string>>& outAsync, int iceP_id, const ::Ice::Context& context)
 {
     _checkTwowayOnly(iceC_server_IAnnuaire_suppressionEnregistrement_name);
     outAsync->invoke(iceC_server_IAnnuaire_suppressionEnregistrement_name, ::Ice::OperationMode::Normal, ::Ice::FormatType::DefaultFormat, context,
@@ -394,7 +394,7 @@ IceProxy::server::IAnnuaire::end_ajoutAnnuaire(const ::Ice::AsyncResultPtr& resu
 }
 
 ::Ice::AsyncResultPtr
-IceProxy::server::IAnnuaire::_iceI_begin_suppressionEnregistrement(const ::std::string& iceP_id, const ::Ice::Context& context, const ::IceInternal::CallbackBasePtr& del, const ::Ice::LocalObjectPtr& cookie, bool sync)
+IceProxy::server::IAnnuaire::_iceI_begin_suppressionEnregistrement(::Ice::Int iceP_id, const ::Ice::Context& context, const ::IceInternal::CallbackBasePtr& del, const ::Ice::LocalObjectPtr& cookie, bool sync)
 {
     _checkTwowayOnly(iceC_server_IAnnuaire_suppressionEnregistrement_name, sync);
     ::IceInternal::OutgoingAsyncPtr result = new ::IceInternal::CallbackOutgoing(this, iceC_server_IAnnuaire_suppressionEnregistrement_name, del, cookie, sync);
@@ -627,7 +627,7 @@ server::IAnnuaire::_iceD_suppressionEnregistrement(::IceInternal::Incoming& inS,
 {
     _iceCheckMode(::Ice::Normal, current.mode);
     ::Ice::InputStream* istr = inS.startReadParams();
-    ::std::string iceP_id;
+    ::Ice::Int iceP_id;
     istr->read(iceP_id);
     inS.endReadParams();
     ::std::string ret = this->suppressionEnregistrement(iceP_id, current);

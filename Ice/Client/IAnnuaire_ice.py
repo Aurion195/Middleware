@@ -24,7 +24,7 @@ __name__ = 'server'
 if 'Annuaire' not in _M_server.__dict__:
     _M_server.Annuaire = Ice.createTempClass()
     class Annuaire(object):
-        def __init__(self, id='', nom='', numTel=''):
+        def __init__(self, id=0, nom='', numTel=''):
             self.id = id
             self.nom = nom
             self.numTel = numTel
@@ -116,7 +116,7 @@ if 'Annuaire' not in _M_server.__dict__:
         __repr__ = __str__
 
     _M_server._t_Annuaire = IcePy.defineStruct('::server::Annuaire', Annuaire, (), (
-        ('id', (), IcePy._t_string),
+        ('id', (), IcePy._t_int),
         ('nom', (), IcePy._t_string),
         ('numTel', (), IcePy._t_string)
     ))
@@ -246,7 +246,7 @@ if 'IAnnuairePrx' not in _M_server.__dict__:
     IAnnuaire._ice_type = _M_server._t_IAnnuaireDisp
 
     IAnnuaire._op_ajoutAnnuaire = IcePy.Operation('ajoutAnnuaire', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0), ((), IcePy._t_string, False, 0)), (), ((), IcePy._t_bool, False, 0), ())
-    IAnnuaire._op_suppressionEnregistrement = IcePy.Operation('suppressionEnregistrement', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), IcePy._t_string, False, 0), ())
+    IAnnuaire._op_suppressionEnregistrement = IcePy.Operation('suppressionEnregistrement', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0),), (), ((), IcePy._t_string, False, 0), ())
     IAnnuaire._op_rechercherPersonne = IcePy.Operation('rechercherPersonne', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), _M_server._t_Annuaire, False, 0), ())
     IAnnuaire._op_getListe = IcePy.Operation('getListe', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_server._t_liste, False, 0), ())
     IAnnuaire._op_display = IcePy.Operation('display', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), None, ())

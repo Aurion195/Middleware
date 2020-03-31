@@ -1,6 +1,6 @@
 module server {
     struct Annuaire {
-        string id;
+        int id;
         string nom;
         string numTel ;
     };
@@ -9,7 +9,7 @@ module server {
 
     interface IAnnuaire {
         bool ajoutAnnuaire(string nom, string numTel) ;
-        string suppressionEnregistrement(string id) ;
+        string suppressionEnregistrement(int id) ;
         Annuaire rechercherPersonne(string nom) ;
         liste getListe() ;
         void display();

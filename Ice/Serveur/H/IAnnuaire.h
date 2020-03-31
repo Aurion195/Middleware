@@ -61,7 +61,7 @@ namespace server
 
 struct Annuaire
 {
-    ::std::string id;
+    int id;
     ::std::string nom;
     ::std::string numTel;
 
@@ -70,7 +70,7 @@ struct Annuaire
      * @return The data members in a tuple.
      */
 
-    std::tuple<const ::std::string&, const ::std::string&, const ::std::string&> ice_tuple() const
+    std::tuple<const int&, const ::std::string&, const ::std::string&> ice_tuple() const
     {
         return std::tie(id, nom, numTel);
     }
@@ -129,7 +129,7 @@ public:
     bool _iceD_ajoutAnnuaire(::IceInternal::Incoming&, const ::Ice::Current&);
     /// \endcond
 
-    virtual ::std::string suppressionEnregistrement(::std::string id, const ::Ice::Current& current) = 0;
+    virtual ::std::string suppressionEnregistrement(int id, const ::Ice::Current& current) = 0;
     /// \cond INTERNAL
     bool _iceD_suppressionEnregistrement(::IceInternal::Incoming&, const ::Ice::Current&);
     /// \endcond
@@ -189,20 +189,20 @@ public:
     void _iceI_ajoutAnnuaire(const ::std::shared_ptr<::IceInternal::OutgoingAsyncT<bool>>&, const ::std::string&, const ::std::string&, const ::Ice::Context&);
     /// \endcond
 
-    ::std::string suppressionEnregistrement(const ::std::string& id, const ::Ice::Context& context = ::Ice::noExplicitContext)
+    ::std::string suppressionEnregistrement(int id, const ::Ice::Context& context = ::Ice::noExplicitContext)
     {
         return _makePromiseOutgoing<::std::string>(true, this, &IAnnuairePrx::_iceI_suppressionEnregistrement, id, context).get();
     }
 
     template<template<typename> class P = ::std::promise>
-    auto suppressionEnregistrementAsync(const ::std::string& id, const ::Ice::Context& context = ::Ice::noExplicitContext)
+    auto suppressionEnregistrementAsync(int id, const ::Ice::Context& context = ::Ice::noExplicitContext)
         -> decltype(::std::declval<P<::std::string>>().get_future())
     {
         return _makePromiseOutgoing<::std::string, P>(false, this, &IAnnuairePrx::_iceI_suppressionEnregistrement, id, context);
     }
 
     ::std::function<void()>
-    suppressionEnregistrementAsync(const ::std::string& id,
+    suppressionEnregistrementAsync(int id,
                                    ::std::function<void(::std::string)> response,
                                    ::std::function<void(::std::exception_ptr)> ex = nullptr,
                                    ::std::function<void(bool)> sent = nullptr,
@@ -212,7 +212,7 @@ public:
     }
 
     /// \cond INTERNAL
-    void _iceI_suppressionEnregistrement(const ::std::shared_ptr<::IceInternal::OutgoingAsyncT<::std::string>>&, const ::std::string&, const ::Ice::Context&);
+    void _iceI_suppressionEnregistrement(const ::std::shared_ptr<::IceInternal::OutgoingAsyncT<::std::string>>&, int, const ::Ice::Context&);
     /// \endcond
 
     Annuaire rechercherPersonne(const ::std::string& nom, const ::Ice::Context& context = ::Ice::noExplicitContext)
@@ -317,7 +317,7 @@ template<>
 struct StreamableTraits<::server::Annuaire>
 {
     static const StreamHelperCategory helper = StreamHelperCategoryStruct;
-    static const int minWireSize = 3;
+    static const int minWireSize = 6;
     static const bool fixedLength = false;
 };
 
@@ -382,7 +382,7 @@ namespace server
 
 struct Annuaire
 {
-    ::std::string id;
+    ::Ice::Int id;
     ::std::string nom;
     ::std::string numTel;
 
@@ -555,32 +555,32 @@ private:
 
 public:
 
-    ::std::string suppressionEnregistrement(const ::std::string& id, const ::Ice::Context& context = ::Ice::noExplicitContext)
+    ::std::string suppressionEnregistrement(::Ice::Int id, const ::Ice::Context& context = ::Ice::noExplicitContext)
     {
         return end_suppressionEnregistrement(_iceI_begin_suppressionEnregistrement(id, context, ::IceInternal::dummyCallback, 0, true));
     }
 
-    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(const ::std::string& id, const ::Ice::Context& context = ::Ice::noExplicitContext)
+    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(::Ice::Int id, const ::Ice::Context& context = ::Ice::noExplicitContext)
     {
         return _iceI_begin_suppressionEnregistrement(id, context, ::IceInternal::dummyCallback, 0);
     }
 
-    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(const ::std::string& id, const ::Ice::CallbackPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
+    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(::Ice::Int id, const ::Ice::CallbackPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
     {
         return _iceI_begin_suppressionEnregistrement(id, ::Ice::noExplicitContext, cb, cookie);
     }
 
-    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(const ::std::string& id, const ::Ice::Context& context, const ::Ice::CallbackPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
+    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(::Ice::Int id, const ::Ice::Context& context, const ::Ice::CallbackPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
     {
         return _iceI_begin_suppressionEnregistrement(id, context, cb, cookie);
     }
 
-    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(const ::std::string& id, const ::server::Callback_IAnnuaire_suppressionEnregistrementPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
+    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(::Ice::Int id, const ::server::Callback_IAnnuaire_suppressionEnregistrementPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
     {
         return _iceI_begin_suppressionEnregistrement(id, ::Ice::noExplicitContext, cb, cookie);
     }
 
-    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(const ::std::string& id, const ::Ice::Context& context, const ::server::Callback_IAnnuaire_suppressionEnregistrementPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
+    ::Ice::AsyncResultPtr begin_suppressionEnregistrement(::Ice::Int id, const ::Ice::Context& context, const ::server::Callback_IAnnuaire_suppressionEnregistrementPtr& cb, const ::Ice::LocalObjectPtr& cookie = 0)
     {
         return _iceI_begin_suppressionEnregistrement(id, context, cb, cookie);
     }
@@ -589,7 +589,7 @@ public:
 
 private:
 
-    ::Ice::AsyncResultPtr _iceI_begin_suppressionEnregistrement(const ::std::string&, const ::Ice::Context&, const ::IceInternal::CallbackBasePtr&, const ::Ice::LocalObjectPtr& cookie = 0, bool sync = false);
+    ::Ice::AsyncResultPtr _iceI_begin_suppressionEnregistrement(::Ice::Int, const ::Ice::Context&, const ::IceInternal::CallbackBasePtr&, const ::Ice::LocalObjectPtr& cookie = 0, bool sync = false);
 
 public:
 
@@ -769,7 +769,7 @@ public:
     bool _iceD_ajoutAnnuaire(::IceInternal::Incoming&, const ::Ice::Current&);
     /// \endcond
 
-    virtual ::std::string suppressionEnregistrement(const ::std::string& id, const ::Ice::Current& current = ::Ice::emptyCurrent) = 0;
+    virtual ::std::string suppressionEnregistrement(::Ice::Int id, const ::Ice::Current& current = ::Ice::emptyCurrent) = 0;
     /// \cond INTERNAL
     bool _iceD_suppressionEnregistrement(::IceInternal::Incoming&, const ::Ice::Current&);
     /// \endcond
@@ -823,7 +823,7 @@ template<>
 struct StreamableTraits< ::server::Annuaire>
 {
     static const StreamHelperCategory helper = StreamHelperCategoryStruct;
-    static const int minWireSize = 3;
+    static const int minWireSize = 6;
     static const bool fixedLength = false;
 };
 

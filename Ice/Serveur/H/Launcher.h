@@ -15,7 +15,7 @@ class Launcher : public IAnnuaire {
         Launcher(const int size = 0) ;
         ~Launcher();
         bool ajoutAnnuaire(std::string nom, std::string numTel, const ::Ice::Current&) ;
-        std::string suppressionEnregistrement(std::string id, const ::Ice::Current&) ;
+        std::string suppressionEnregistrement(int id, const ::Ice::Current&) ;
         ::server:: liste getListe(const ::Ice::Current&) ;
         ::server:: Annuaire rechercherPersonne(std::string nom, const ::Ice::Current&) ;
         bool contactPresent(std::string nom, std::string numTel) ;
